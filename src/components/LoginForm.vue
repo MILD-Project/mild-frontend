@@ -3,7 +3,7 @@
     <div class="form-wrapper form-wrapper-sm">
       <form @submit.prevent="submitForm" class="form">
         <div style="display: flex; align-items: center; flex-direction: row">
-          <label for="username" style="font-size: 13px; margin-right: 10px">이메일 </label>
+          <label for="username" style="font-size: 10px; margin-right: 10px">이메일 </label>
           <input type="text" id="username" v-model="username" style="width: 4000px; margin-right: 40px" />
           <p class="validation-text">
             <span class="warning" v-if="!isUsernameValid && username || username == ''" style="width: 25px; height: 25px;" >
@@ -16,7 +16,7 @@
           </p>
         </div>
         <div style="display: flex; align-items: center; flex-direction: row">
-          <label for="password" style="font-size: 10px; margin-right: 10px">pw: </label>
+          <label for="password" style="font-size: 10px; margin-right: 10px">비밀번호 </label>
           <input type="password" id="password" v-model="password" style="width: 4000px; margin-right: 40px" />
           <p class="validation-text">
             <span class="warning" v-if="!password" style="width: 25px; height: 25px;">
@@ -64,8 +64,9 @@ export default {
           username: this.username,
           password: this.password,
         };
-        const response = await loginUser(userData);
-        console.log(response.data.user.username);
+        const { data } = await loginUser(userData);
+        // console.log(response.data.user.username);
+        this.$store.commit('setUsername', data.user.username);
         this.$router.push('/main');
         // this.logMessage = `${response.data.user.username}님이 로그인했습니다.`;
       } catch (error) {

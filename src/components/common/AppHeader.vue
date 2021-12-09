@@ -4,8 +4,14 @@
       <router-link to="/" className="logo">MILD</router-link>
     </div>
     <div className="navigations">
-      <router-link to="/signup">회원가입</router-link>
-      <router-link to="/login">로그인</router-link>
+      <template v-if="isUserLogin">
+        <span class="username">{{ $store.state.username }}</span>
+        <a href="#" @click="logoutUser">로그아웃</a>
+      </template>
+      <template v-else>
+        <router-link to="/signup">회원가입</router-link>
+        <router-link to="/login">로그인</router-link>
+      </template>
     </div>
   </header>
 </template>
@@ -13,6 +19,17 @@
 <script>
 export default {
   name: 'AppHeader',
+  computed: {
+    isUserLogin() {
+      return this.$store.getters.isLogin;
+    },
+  },
+  methods: {
+    logoutUser() {
+      this.$store.commit('clearUsername');
+      this.$router.push('/');
+    },
+  },
 };
 </script>
 
@@ -50,5 +67,8 @@ a.logo {
 a.router-link-exact-active {
   color: white;
   font-weight: bold;
+}
+.username {
+  color: #fff;
 }
 </style>

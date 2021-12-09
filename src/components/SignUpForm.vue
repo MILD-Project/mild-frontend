@@ -29,7 +29,7 @@
           </p>
         </div>
         <div style="display: flex; align-items: center; flex-direction: row">
-          <label for="nickname" style="font-size: 10px; margin-right: 10px" >닉네임 </label>
+          <label for="nickname" style="font-size: 10px; margin-right: 10px">닉네임 </label>
           <input type="text" id="nickname" v-model="nickname" style="width: 4000px; margin-right: 40px" />
           <p class="validation-text">
             <span class="warning" v-if="!nickname" style="width: 25px; height: 25px;" >
@@ -47,7 +47,8 @@
           </button>
           <button type="reset" class="btn" style="background: #797974; font-weight: 400;">취소</button>
         </div>
-        <p class="log">{{ logMessage }}</p>
+<!--        <p class="log">{{ logMessage }}</p>-->
+        <p class="log" :class="{'warn': logMessage === '회원가입에 실패했습니다.'}"></p>
       </form>
     </div>
   </div>
@@ -69,16 +70,21 @@ export default {
   },
   methods: {
     async submitForm() {
-      console.log('submit');
-      const userData = {
-        username: this.username,
-        password: this.password,
-        nickname: this.nickname,
-      };
-      const response = await registerUser(userData);
-      console.log(response.data.username);
-      this.logMessage = `${response.data.username}님이 가입되었습니다.`;
-      this.initForm();
+      try {
+        const userData = {
+          username: this.username,
+          password: this.password,
+          nickname: this.nickname,
+        };
+        const response = await registerUser(userData);
+        console.log(response.data.username);
+        this.logMessage = `${response.data.username}님이 가입되었습니다.`;
+      } catch (error) {
+        console.log(error.response);
+        this.logMessage = '회원가입에 실패했습니다.';
+      } finally {
+        this.initForm();
+      }
     },
     initForm() {
       this.username = '';
@@ -93,3 +99,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.warn {
+  color: tomato;
+}
+</style>

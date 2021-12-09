@@ -47,8 +47,14 @@
           </button>
           <button type="reset" class="btn" style="background: #797974; font-weight: 400;">취소</button>
         </div>
+          <template v-if="submitForm">
+            <p class="log">{{ logMessage }}</p>
+          </template>
+          <template v-else>
+            <p class="log">{{ failMessage }}</p>
+          </template>
 <!--        <p class="log">{{ logMessage }}</p>-->
-        <p class="log" :class="{'warn': logMessage === '회원가입에 실패했습니다.'}"></p>
+<!--        <p class="log" :class="{'warn': logMessage === '회원가입에 실패했습니다.'}"></p>-->
       </form>
     </div>
   </div>
@@ -66,6 +72,7 @@ export default {
       password: '',
       nickname: '',
       logMessage: '',
+      failMessage: '회원가입에 실패했습니다.',
     };
   },
   methods: {
@@ -81,7 +88,7 @@ export default {
         this.logMessage = `${response.data.username}님이 가입되었습니다.`;
       } catch (error) {
         console.log(error.response);
-        this.logMessage = '회원가입에 실패했습니다.';
+        // this.logMessage = '회원가입에 실패했습니다.';
       } finally {
         this.initForm();
       }

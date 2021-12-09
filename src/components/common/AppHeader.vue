@@ -1,9 +1,7 @@
 <template>
   <header>
     <div>
-      <router-link to="/" className="logo">
-        MILD
-      </router-link>
+      <router-link to="/" className="logo">MILD</router-link>
     </div>
     <div className="navigations">
       <router-link to="/signup">회원가입</router-link>

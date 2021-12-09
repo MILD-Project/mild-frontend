@@ -7,10 +7,6 @@
 
 <script>
 export default {
-  name: "MainPage"
+  name: 'MainVeiw',
 };
 </script>
-
-<style scoped>
-
-</style>

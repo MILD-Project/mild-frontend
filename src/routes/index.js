@@ -12,7 +12,7 @@ export default new VueRouter({
     },
     {
       path: '/signup',
-      component: () => import('@/views/SignView.vue'),
+      component: () => import('@/views/SignUpView.vue'),
     },
     {
       path: '/login',

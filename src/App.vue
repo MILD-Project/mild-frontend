@@ -1,11 +1,15 @@
 <template>
   <div>
-    <h1>Hello World</h1>
+    <AppHeader></AppHeader>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import AppHeader from '@/components/common/AppHeader';
+
 export default {
-  name: 'App'
-}
+  name: 'App',
+  components: { AppHeader },
+};
 </script>

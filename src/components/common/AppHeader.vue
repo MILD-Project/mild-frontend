@@ -9,8 +9,8 @@
         <a href="#" @click="logoutUser" class="logout-button">로그아웃</a>
       </template>
       <template v-else>
-        <router-link to="/signup">회원가입</router-link>
-        <router-link to="/login">로그인</router-link>
+        <router-link to="/signup" class="regi-button">회원가입</router-link>
+        <router-link to="/login" class="login-button">로그인</router-link>
       </template>
     </div>
   </header>
@@ -74,6 +74,12 @@ a.router-link-exact-active {
   margin-left: 5px;
 }
 .logout-button {
+  font-size: 14px;
+}
+.regi-button {
+  font-size: 14px;
+}
+.login-button {
   font-size: 14px;
 }
 </style>

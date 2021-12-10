@@ -2,11 +2,11 @@
   <header>
     <div>
       <router-link to="/" className="logo">MILD</router-link>
+      <span class="username">{{ $store.state.username }}</span>
     </div>
     <div className="navigations">
       <template v-if="isUserLogin">
-        <span class="username">{{ $store.state.username }}</span>
-        <a href="#" @click="logoutUser">로그아웃</a>
+        <a href="#" @click="logoutUser" class="logout-button">로그아웃</a>
       </template>
       <template v-else>
         <router-link to="/signup">회원가입</router-link>
@@ -70,5 +70,10 @@ a.router-link-exact-active {
 }
 .username {
   color: #fff;
+  font-size: 12px;
+  margin-left: 5px;
+}
+.logout-button {
+  font-size: 14px;
 }
 </style>
